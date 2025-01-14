@@ -1,0 +1,2024 @@
+using BusinessCardWizard.CoreLayer.Loggers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.Configuration
+{
+    //Singleton
+    public class LoggerConfig
+    {
+        private static LoggerConfig loggerConfig;
+
+        public Logger logger { get; set; }
+
+        private LoggerConfig()
+        {
+
+        }
+
+        public static LoggerConfig GetInstance()
+        {
+
+            if (loggerConfig == null)
+            {
+                loggerConfig = new LoggerConfig();
+            }
+
+            return loggerConfig;
+        }
+    }
+}
+
+-*-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.Configuration
+{
+    //Singleton
+    public class LoggerDirectoryFilePathConfig
+    {
+        private static LoggerDirectoryFilePathConfig loggerDirectoryFilePathConfig;
+
+        public string loggerDirectoryFilePath{ get; set; }
+
+        private LoggerDirectoryFilePathConfig()
+        {
+
+        }
+
+        public static LoggerDirectoryFilePathConfig GetInstance()
+        {
+
+            if (loggerDirectoryFilePathConfig == null)
+            {
+                loggerDirectoryFilePathConfig = new LoggerDirectoryFilePathConfig();
+            }
+
+            return loggerDirectoryFilePathConfig;
+        }
+    }
+
+}
+
+-*-
+using BusinessCardWizard.CoreLayer.Serializers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.Configuration
+{
+    public class SerializerConfig
+    {
+        private static SerializerConfig serializerConfig;
+
+        public Serializer serializer { get; set; }
+
+        private SerializerConfig()
+        {
+
+        }
+
+        public static SerializerConfig GetInstance()
+        {
+            if (serializerConfig == null)
+            {
+                serializerConfig = new SerializerConfig();
+            }
+
+            return serializerConfig;
+        }
+
+    }
+}
+
+-*-
+
+
+using BusinessCardWizard.CoreLayer.SerializerHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.Configuration
+{
+    public class SerializerHelperConfig
+    {
+        private static SerializerHelperConfig serializerHelperConfig;
+
+        public SerializerHelper serializerHelper { get; set; }
+
+        private SerializerHelperConfig()
+        {
+
+        }
+
+        public static SerializerHelperConfig GetInstance()
+        {
+            if (serializerHelperConfig == null)
+            {
+                serializerHelperConfig = new SerializerHelperConfig();
+            }
+            return serializerHelperConfig;
+        }
+    }
+}
+
+-*-
+
+<UserControl x:Class="BusinessCardWizard.Controls.EditContactView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BusinessCardWizard.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="700">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+
+        <Style x:Key="valid" TargetType="{x:Type Button}" BasedOn="{StaticResource button}">
+            <Setter Property="IsEnabled" Value="false" />
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding ElementName=company, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=firstname, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=lastname, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=organization, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=jobtitle, Path=Text.IsEmpty}" Value="false"/>
+
+                        <Condition Binding="{Binding ElementName=country, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=state, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=city, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=zip, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=line1, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=line2, Path=Text.IsEmpty}" Value="false"/>
+
+                        <Condition Binding="{Binding ElementName=cellphone, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=officephone, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=homephone, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=primaryemail, Path=Text.IsEmpty}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=secondaryemail, Path=Text.IsEmpty}" Value="false"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="IsEnabled" Value="true" />
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Right">
+            <Button DockPanel.Dock="Top" Content="Shut" Style="{StaticResource button}"/>
+            <Button DockPanel.Dock="Top" Content="Delete" Style="{StaticResource button}"/>
+            <Button DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Content="Save" Style="{StaticResource valid}" />
+        </DockPanel>
+
+        <StackPanel DockPanel.Dock="Left" Margin="40 60 20 0" >
+            <Border Padding="1" Height="140" Width="100"  Background="Transparent" BorderThickness="1" BorderBrush="{StaticResource {x:Static SystemColors.ControlDarkBrushKey}}" >
+                <Image x:Name="image" Source="{Binding ImagePath}" Stretch="Fill"/>
+            </Border>
+            <TextBlock x:Name="imagetb" Width="100" TextWrapping="Wrap" TextAlignment="Center" TextDecorations="Underline" Foreground="Blue">Click here twice to add new image</TextBlock>
+        </StackPanel>
+
+        <StackPanel DockPanel.Dock="Left" Margin="0 50 0 0">
+            <GroupBox Padding="10" Margin="10 5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+
+                    <Label>Company:</Label>
+                    <Label Grid.Row="1">First name:</Label>
+                    <Label Grid.Row="2">Last name:</Label>
+                    <Label Grid.Row="3">Organization:</Label>
+                    <Label Grid.Row="4">Job Title:</Label>
+
+                    <TextBox x:Name="company" Grid.Column="1" Text="{Binding Company}"/>
+                    <TextBox x:Name="firstname" Grid.Row="1" Grid.Column="1" TabIndex="0"  Text="{Binding FirstName}"/>
+                    <TextBox x:Name="lastname" Grid.Row="2" Grid.Column="1" TabIndex="1" Text="{Binding LastName}"/>
+                    <TextBox x:Name="organization" Grid.Row="3" Grid.Column="1" TabIndex="2" Text="{Binding Organization}"/>
+                    <TextBox x:Name="jobtitle" Grid.Row="4" Grid.Column="1" TabIndex="3" Text="{Binding JobTitle}"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Padding="10" Margin="10 5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+
+                    <Label>Country:</Label>
+                    <Label Grid.Row="1">State:</Label>
+                    <Label Grid.Row="2">City:</Label>
+                    <Label Grid.Row="3">Zip code:</Label>
+                    <Label Grid.Row="4">Text line:</Label>
+                    <Label Grid.Row="5">Text line:</Label>
+
+                    <TextBox x:Name="country" Grid.Column="1" Text="{Binding Address.Country}"/>
+                    <TextBox x:Name="state" Grid.Row="1" Grid.Column="1" TabIndex="0" Text="{Binding Address.State}"/>
+                    <TextBox x:Name="city" Grid.Row="2" Grid.Column="1" TabIndex="1" Text="{Binding Address.City}"/>
+                    <TextBox x:Name="zip" Grid.Row="3" Grid.Column="1" TabIndex="2" Text="{Binding Address.Zip}"/>
+                    <TextBox x:Name="line1" Grid.Row="4" Grid.Column="1" TabIndex="3" Text="{Binding Address.Line1}"/>
+                    <TextBox x:Name="line2" Grid.Row="6" Grid.Column="1" TabIndex="4" Text="{Binding Address.Line2}"/>
+                    
+                    <!--Not to delete:-->
+                    <!--ComboBox x:Name="state" Grid.Row="1" Grid.Column="1" TabIndex="0" ItemsSource="{Binding Source={StaticResource states}}"/-->
+                </Grid>
+            </GroupBox>
+            <GroupBox Padding="10" Margin="10 5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="135"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+
+                    <Label>Cell phone:</Label>
+                    <Label Grid.Row="1">Office phone:</Label>
+                    <Label Grid.Row="2">Home phone:</Label>
+                    <Label Grid.Row="3">Primary mail:</Label>
+                    <Label Grid.Row="4">Secondary mail:</Label>
+
+                    <TextBox x:Name="cellphone" Grid.Column="1" TabIndex="0" Text="{Binding CellPhone, Converter={StaticResource phone}, ConverterParameter=' +36 {0:(##) ###-####}'}"/>
+                    <TextBox x:Name="officephone" Grid.Row="1" Grid.Column="1" TabIndex="1" Text="{Binding OfficePhone, Converter={StaticResource phone}, ConverterParameter=' {0:###-####}'}"/>
+                    <TextBox x:Name="homephone" Grid.Row="2" Grid.Column="1" TabIndex="2" Text="{Binding HomePhone, Converter={StaticResource phone}, ConverterParameter=' {0:###-####}'}"/>
+                    <TextBox x:Name="primaryemail" Grid.Row="3" Grid.Column="1" TabIndex="3" Text="{Binding PrimaryEmail}"/>
+                    <TextBox x:Name="secondaryemail" Grid.Row="4" Grid.Column="1" TabIndex="4" Text="{Binding SecondaryEmail}"/>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+    </DockPanel>
+</UserControl>
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace BusinessCardWizard.Controls
+{
+    /// <summary>
+    /// Interaction logic for EditContactView.xaml
+    /// </summary>
+    public partial class EditContactView : UserControl
+    {
+        public EditContactView()
+        {
+            InitializeComponent();
+        }
+    }
+}
+
+-*-
+
+<UserControl x:Class="BusinessCardWizard.Controls.SearchBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BusinessCardWizard.Controls"
+             mc:Ignorable="d" 
+  d:DesignHeight="450" d:DesignWidth="800">
+
+    <DockPanel LastChildFill="True" Margin="0 10 0 0">
+        <!--Image Width="22" Margin="5" Source="/Images/CLOCK001.png" ToolTip="{Binding Converter={StaticResource time}, ConverterParameter=' It is now {0:d} at {0:t}'}"/-->
+        <Label DockPanel.Dock="Left" Content="Search:" VerticalAlignment="Center" FontWeight="DemiBold"  Margin="30 0 0 0"/>
+        <Button DockPanel.Dock="Right" BorderThickness="0" Background="Transparent" Width="25" Margin="0 0 10 0">
+            <Image Source="/Resources/Icons/directory_explorer-4.png"/>
+        </Button>
+        <TextBox x:Name="searchText" Width="Auto" Margin="185 0 5 0" Background="White"/>
+    </DockPanel>
+</UserControl>
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace BusinessCardWizard.Controls
+{
+    /// <summary>
+    /// Interaction logic for SearchBar.xaml
+    /// </summary>
+    public partial class SearchBar : UserControl
+    {
+        public SearchBar()
+        {
+            InitializeComponent();
+        }
+    }
+}
+
+-*-
+
+<UserControl x:Class="BusinessCardWizard.Controls.SideBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BusinessCardWizard.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel Width="220" Margin="5">
+        <Button x:Name="insert" DockPanel.Dock="Bottom" Margin="0 2 17 0" Content="Insert" BorderThickness="0 0 1 1" Style="{x:Null}" Click="Event_Click"/>
+        <ScrollViewer>
+            <ItemsControl x:Name="itemscontrol" Background="White" BorderThickness="1" Padding="3" ItemsSource="{Binding collection}" ItemTemplate="{StaticResource card}" BorderBrush="{StaticResource {x:Static SystemColors.ActiveBorderBrushKey}}" Loaded="itemscontrol_Loaded"/>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows.Threading;
+
+namespace BusinessCardWizard.Controls
+{
+    /// <summary>
+    /// Interaction logic for SideBar.xaml
+    /// </summary>
+    public partial class SideBar : UserControl
+    {
+        public static readonly RoutedEvent clickEvent = EventManager.RegisterRoutedEvent("Routed", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(SideBar));
+
+        public List<string> keys = new List<string>
+        {
+            "grad_aqua",
+            "grad_magenta",
+            "grad_yellow",
+            "grad_pink",
+            "grad_aquamarine",
+            "grad_lime"
+        };
+
+        public event RoutedEventHandler click
+        {
+            add { AddHandler(clickEvent, value); }
+            remove { RemoveHandler(clickEvent, value); }
+        }
+
+        public SideBar()
+        {
+            InitializeComponent();
+
+            ((INotifyCollectionChanged)itemscontrol.Items).CollectionChanged += ItemsControl_CollectionChanged;
+        }
+
+        public void Recolor()
+        {
+            int i = 0;
+
+            foreach (var item in itemscontrol.Items)
+            {
+                UIElement container = (UIElement)itemscontrol.ItemContainerGenerator.ContainerFromItem(item);
+
+                Border border = VisualTreeHelper.GetChild(container, 0) as Border;
+
+                border.Background = (LinearGradientBrush)FindResource(keys[i]);
+
+                if (i++ >= keys.Count() - 1)
+                {
+                    i = 0;
+                }
+            }
+        }
+
+        private void Event_Click(object sender, RoutedEventArgs e)
+        {
+            RoutedEventArgs routedEventArgs = new RoutedEventArgs(clickEvent);
+
+            RaiseEvent(routedEventArgs);
+        }
+
+        private void itemscontrol_Loaded(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => Recolor()));
+        }
+
+        private void ItemsControl_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(() => Recolor()));
+            }
+        }
+
+        private void Insert_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Data;
+
+namespace BusinessCardWizard.Converter
+{
+    class PhoneConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string format = parameter as string;
+
+            string typed = value as string;
+
+            if (string.IsNullOrEmpty(typed))
+            {
+                return null;
+            }
+
+            if (string.IsNullOrEmpty(format))
+            {
+                return null;
+            }
+
+            var digits = typed.Where(delegate (Char x) { return Char.IsDigit(x); });
+
+            string array = new string(digits.ToArray());
+
+            if (string.IsNullOrWhiteSpace(array))
+            {
+                return null;
+            }
+
+            long number = System.Convert.ToInt64(array);
+
+            return string.Format(format, number).Trim();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value;
+        }
+    }
+}
+
+-*-
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BusinessCardWizard.Resources">
+
+    <Color x:Key="white">#FFFFFF</Color>
+    <Color x:Key="aqua">#00FFFF</Color>
+    <Color x:Key="pink">#FFFF1493</Color>
+    <Color x:Key="aquamarine">#FF7FFFD4</Color>
+    <Color x:Key="yellow">#FFFFFF00</Color>
+    <Color x:Key="lime">#FF00FF00</Color>
+    <Color x:Key="magenta">#FF00FF</Color>
+
+    <SolidColorBrush x:Key="white_brush" Color="{StaticResource white}"/>
+    <SolidColorBrush x:Key="aqua_brush" Color="{StaticResource aqua}"/>
+    <SolidColorBrush x:Key="pink_brush" Color="{StaticResource pink}"/>
+    <SolidColorBrush x:Key="aquamarine_brush" Color="{StaticResource aquamarine}"/>
+    <SolidColorBrush x:Key="yellow_brush" Color="{StaticResource yellow}"/>
+    <SolidColorBrush x:Key="lime_brush" Color="{StaticResource lime}"/>
+    <SolidColorBrush x:Key="magenta_brush" Color="{StaticResource magenta}"/>
+
+    <LinearGradientBrush x:Key="grad_aqua" StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource white}" Offset="0.35"/>
+        <GradientStop Color="{StaticResource aqua}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="grad_magenta"  StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource white}" Offset="0.35"/>
+        <GradientStop Color="{StaticResource magenta}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="grad_yellow"  StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource white}" Offset="0.35"/>
+        <GradientStop Color="{StaticResource yellow}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="grad_pink"  StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource white}" Offset="0.35"/>
+        <GradientStop Color="{StaticResource pink}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="grad_aquamarine"  StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource white}" Offset="0.35"/>
+        <GradientStop Color="{StaticResource aquamarine}" Offset="1.0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="grad_lime"  StartPoint="0,0.5" EndPoint="1,0.5">
+        <GradientStop Color="{StaticResource white}" Offset="0.35"/>
+        <GradientStop Color="{StaticResource lime}" Offset="1.0"/>
+    </LinearGradientBrush>
+</ResourceDictionary>
+
+-*-
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BusinessCardWizard.Resources"
+                    xmlns:Model="clr-namespace:BusinessCardWizard.DataAccessLayer.Model;assembly=BusinessCardWizard.DataAccessLayer">
+
+    <ObjectDataProvider x:Key="states" MethodName="GetStates" ObjectType="{x:Type Model:States}"/>
+
+</ResourceDictionary>
+
+-*-
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BusinessCardWizard.Resources">
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Height" Value="18"/>
+        <Setter Property="Width" Value="200"/>
+    </Style>
+
+    <Style x:Key="button" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="BorderThickness" Value="0 0 1 1"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+</ResourceDictionary>
+
+-*-
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BusinessCardWizard.Resources" xmlns:converter="clr-namespace:BusinessCardWizard.Converter">
+    <DataTemplate x:Key="card">
+        <DataTemplate.Resources>
+            <converter:PhoneConverter x:Key="phone"/>
+        </DataTemplate.Resources>
+
+        <Border Margin="3" BorderThickness="0.0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock FontWeight="DemiBold">Name:</TextBlock>
+                <TextBlock Grid.Row="1" FontWeight="DemiBold">Office:</TextBlock>
+                <TextBlock Grid.Row="2" FontWeight="DemiBold">Email:</TextBlock>
+
+                <TextBlock Grid.Column="1" FontWeight="UltraLight" Text="{Binding FullName}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="UltraLight" Text="{Binding Path=OfficePhone, Converter={StaticResource phone}, ConverterParameter=' {0:###-####}'}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" FontWeight="UltraLight" Text="{Binding PrimaryEmail}"/>
+
+                <Button x:Name="add" Grid.Column="2" Width="15" Height="15" Margin="1" BorderThickness="0 0 1 1">
+                    <Button.Content>
+                        <TextBlock VerticalAlignment="Center">+</TextBlock>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>
+
+-*-
+
+<Window x:Class="BusinessCardWizard.Windows.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BusinessCardWizard.Windows" xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase" xmlns:uc="clr-namespace:BusinessCardWizard.Controls"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="Windows Business Card Wizard®" Height="935" Width="935" Background="{StaticResource {x:Static SystemColors.ControlBrushKey}}">
+
+    <!--Window.DataContext>
+        <md:Repository x:Name="repository"/>
+    </Window.DataContext-->
+
+    <Window.Resources>
+        <CollectionViewSource x:Key="sorted" Source="{Binding contacts}">
+            <CollectionViewSource.SortDescriptions>
+                <ComponentModel:SortDescription PropertyName="LastName"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
+
+    <DockPanel>
+        <uc:SearchBar DockPanel.Dock="Top"/>
+        <StackPanel DockPanel.Dock="Bottom" Margin="30 0 0 2">
+            <StatusBar >
+                <StatusBarItem DockPanel.Dock="Right">
+                    <Slider x:Name="zoomslider" Width="125" Value="1" Minimum=".5" Maximum="2"/>
+                </StatusBarItem>
+                <StatusBarItem DockPanel.Dock="Right">
+                    <TextBlock>Zoom:</TextBlock>
+                </StatusBarItem>
+                <StatusBarItem DockPanel.Dock="Left">
+                    <Label FontWeight="Demibold">Status:</Label>
+                </StatusBarItem>
+                <StatusBarItem DockPanel.Dock="Left">
+                    <TextBlock x:Name="status"/>
+                </StatusBarItem>
+            </StatusBar>
+        </StackPanel>
+
+        <Expander DockPanel.Dock="Left" ExpandDirection="Right" IsExpanded="True" BorderThickness="0" BorderBrush="Gray" Margin="5 0 0 0" >
+            <Expander.Header>
+                <TextBlock FontSize="16">Contacts
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            <uc:SideBar x:Name="sidebar" click="RoutedEvent" ButtonBase.Click="sidebar_button_Click" />
+        </Expander>
+
+        <TabControl x:Name="tabs" Background="Transparent" Margin="5 3 10 5" ButtonBase.Click="tabs_Click" MouseDoubleClick="tabs_MouseDoubleClick" >
+            <TabControl.LayoutTransform>
+                <ScaleTransform ScaleX="{Binding ElementName=zoomslider, Path=Value}" 
+                                ScaleY="{Binding ElementName=zoomslider, Path=Value}"/>
+            </TabControl.LayoutTransform>
+        </TabControl>
+    </DockPanel>
+</Window>
+
+-*-
+
+using BusinessCardWizard.ApplicationLayer.Services;
+using BusinessCardWizard.Configuration;
+using BusinessCardWizard.Controls;
+using BusinessCardWizard.CoreLayer.SerializerHelpers;
+using BusinessCardWizard.CoreLayer.Serializers;
+using BusinessCardWizard.DataAccessLayer.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace BusinessCardWizard.Windows
+{
+    /// <summary>
+    /// Interaction logic for Shell.xaml
+    /// </summary>
+    /// 
+    public partial class Shell : Window
+    {
+        private ContactDataService contactDataService { get; set; }
+
+       // public JsonSerializer jsonSerializer { get; set; }
+
+        public Shell()
+        {
+            contactDataService = new ContactDataService(SerializerHelperConfig.GetInstance().serializerHelper, LoggerConfig.GetInstance().logger);
+
+            contactDataService.Deserialize();
+
+            DataContext = contactDataService;
+
+            InitializeComponent();
+        }
+
+        public void Save()
+        {
+
+            TabItem tab = (TabItem)tabs.SelectedItem;
+
+            Contact contact = (Contact)tab.DataContext;
+
+            tab.Header = contact.FullName;
+
+            contactDataService.Save(contact);
+
+            status.Text = "Saved";
+        }
+
+        public void Add(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)e.OriginalSource;
+
+            Contact contact = button.DataContext as Contact;
+
+            foreach (TabItem item in tabs.Items)
+            {
+                if (contact.Same((Contact)item.DataContext))
+                {
+                    item.Focus();
+
+                    return;
+                };
+            }
+
+            Insert(contact.FullName, contact);
+
+            status.Text = "Opened";
+        }
+
+        public void Insert(string header, Contact contact)
+        {
+            ContentPresenter presenter = new ContentPresenter();
+
+            presenter.Content = new EditContactView();
+
+            TabItem tab = new TabItem();
+
+            tab.DataContext = contact;
+
+            tab.Header = header;
+
+            tab.Content = presenter;
+
+            tabs.Items.Insert(0, tab);
+
+            tab.Focus();
+
+            status.Text = "Inserted";
+        }
+
+        public void Delete()
+        {
+            TabItem tab = (TabItem)tabs.SelectedItem;
+
+            Contact contact = (Contact)tab.DataContext;
+
+            contactDataService.Delete(contact);
+
+            tabs.Items.Remove(tab);
+
+            status.Text = "Deleted";
+        }
+
+        public void Shut()
+        {
+            TabItem tab = tabs.SelectedItem as TabItem;
+
+            tabs.Items.Remove(tab);
+
+            status.Text = "Closed";
+        }
+
+        private void RoutedEvent(object sender, RoutedEventArgs e)
+        {
+            //Not to delete!
+        }
+
+        /*
+        Not to delete:
+toborzó
+        private void SideBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if ((e.OriginalSource as FrameworkElement).GetType() == typeof(Button))
+            {
+                Add(sender, e);
+            }
+        }
+        */
+
+        private void tabs_Click(object sender, RoutedEventArgs e)
+        {
+            object shell = this;
+
+            Button button = (Button)e.OriginalSource;
+
+            MethodInfo methodInfo = this.GetType().GetMethod((string)button.Content);
+
+            methodInfo.Invoke(shell, new object[] {});
+        }
+
+
+        private void sidebar_button_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.OriginalSource as FrameworkElement;
+
+            if (element.Name.Equals("insert"))
+            {
+                Insert("New Item", new Contact());
+            }
+
+            if (element.Name.Equals("add"))
+            {
+                Add(sender, e);
+            }
+        }
+
+        public string AskUserForImagePath()
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            dlg.ShowDialog();
+
+            return dlg.FileName;
+        }
+
+        private void AddImage()
+        {
+            TabItem tab = (TabItem)tabs.SelectedItem;
+
+            Contact contact = (Contact)tab.DataContext;
+
+            contact.ImagePath = AskUserForImagePath();
+
+            tab.DataContext = null;
+
+            tab.DataContext = contact;
+        }
+
+        private void tabs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            FrameworkElement element = (FrameworkElement)e.OriginalSource;
+
+            if (element.Name == "imagetb")
+            {
+                AddImage();
+            }
+        }
+    }
+}
+
+-*-
+
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="AppDataSettings" type="BusinessCardWizard.AppDataSection, BusinessCardWizard" />
+  </configSections>
+  <AppDataSettings logger="TextFileLogger" serializer="JsonSerializer" serializerHelper="JsonSerializerHelper" loggerDirectoryFilePath="C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard\bin\Debug\Logs" /> 
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+    </startup>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>
+
+-*-
+
+<Application x:Class="BusinessCardWizard.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BusinessCardWizard" 
+             xmlns:Converter="clr-namespace:BusinessCardWizard.Converter"
+             StartupUri="/Windows/Shell.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Colors.xaml"/>
+                <ResourceDictionary Source="Resources\Styles.xaml"/>
+                <ResourceDictionary Source="Resources\Templates.xaml"/>
+                <ResourceDictionary Source="Resources\Providers.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Converter:PhoneConverter x:Key="phone"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
+
+-*-
+
+using System;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
+using System.Drawing.Imaging;
+using BusinessCardWizard.Configuration;
+using Application = System.Windows.Application;
+
+namespace BusinessCardWizard
+{
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
+    {
+        public App()
+        {
+            Builder.Initialize();
+            LoggerConfig.GetInstance().logger.SetFilePath(0);
+            SerializerConfig.GetInstance().serializer.FileName = "contacts";
+
+            AppDomain.CurrentDomain.UnhandledException += ScreenShot;
+
+        }
+
+        private static void ScreenShot(object sender, UnhandledExceptionEventArgs e)
+        {
+            Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Graphics graphics = Graphics.FromImage(bitmap);
+
+            graphics.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
+
+            string dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reports");
+            string path = Path.Combine(dir, string.Format("{0:yyyyMMddhhmmss}.jpg", DateTime.Now));
+
+            if(!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            bitmap.Save(path, ImageFormat.Jpeg);
+        }
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace BusinessCardWizard
+{
+    public class AppDataSection : ConfigurationSection
+    {
+        private static AppDataSection settings = ConfigurationManager.GetSection("AppDataSettings") as AppDataSection;
+
+        public static AppDataSection Settings
+        {
+            get { return AppDataSection.settings; }
+        }
+
+
+        [ConfigurationProperty("logger", IsRequired = true)]
+        public string Logger
+        {
+            get
+            {
+                return this["logger"] as string;
+            }
+            set
+            {
+                this["logger"] = value;
+            }
+        }
+
+        [ConfigurationProperty("loggerDirectoryFilePath", IsRequired = true)]
+        public string LoggerDirectoryFilePath
+        {
+            get
+            {
+                return this["loggerDirectoryFilePath"] as string;
+            }
+            set
+            {
+                this["loggerDirectoryFilePath"] = value;
+            }
+        }
+
+        [ConfigurationProperty("serializer", IsRequired = true)]
+        public string Serializer
+        {
+            get
+            {
+                return this["serializer"] as string;
+            }
+            set
+            {
+                this["serializer"] = value;
+            }
+        }
+
+        [ConfigurationProperty("serializerHelper", IsRequired = true)]
+        public string SerializerHelper
+        {
+            get
+            {
+                return this["serializerHelper"] as string;
+            }
+            set
+            {
+                this["serializerHelper"] = value;
+            }
+        }
+    }
+}
+
+-*-
+
+using BusinessCardWizard.Configuration;
+using BusinessCardWizard.CoreLayer.Loggers;
+using BusinessCardWizard.CoreLayer.SerializerHelpers;
+using BusinessCardWizard.CoreLayer.Serializers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace BusinessCardWizard
+{
+
+    // logger ="TextFileLogger" serializer ="JsonSerializer" serializerHelper ="JsonSerializerHelper"  loggerDirectoryFilePath="Logs"
+    public static class Builder
+    {
+        public static void Initialize()
+        {
+           
+            Type loggerType = Type.GetType($"BusinessCardWizard.CoreLayer.Loggers.{AppDataSection.Settings.Logger}, BusinessCardWizard.CoreLayer");
+            Type serializerType = Type.GetType($"BusinessCardWizard.CoreLayer.Serializers.{AppDataSection.Settings.Serializer}, BusinessCardWizard.CoreLayer");
+            Type serializerHelperType = Type.GetType($"BusinessCardWizard.CoreLayer.SerializerHelpers.{AppDataSection.Settings.SerializerHelper}, BusinessCardWizard.CoreLayer");
+
+            LoggerConfig.GetInstance().logger = (Logger)Activator.CreateInstance(loggerType, new object[] {AppDataSection.Settings.LoggerDirectoryFilePath });
+            SerializerConfig.GetInstance().serializer = (Serializer)Activator.CreateInstance(serializerType, new object[] {0});
+            SerializerHelperConfig.GetInstance().serializerHelper = (SerializerHelper)Activator.CreateInstance(serializerHelperType, new object[] { SerializerConfig.GetInstance().serializer, LoggerConfig.GetInstance().logger });
+        }
+    }
+}
+
+-*-
+
+using BusinessCardWizard.CoreLayer.Loggers;
+using BusinessCardWizard.CoreLayer.SerializerHelpers;
+using BusinessCardWizard.DataAccessLayer.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.ApplicationLayer.Services
+{
+    public class ContactDataService : DataService<Contact>
+    {
+        public ObservableCollection<Contact> collection { get; set; }
+        public ContactDataService(SerializerHelper serializerHelper, Logger logger) : base(serializerHelper, logger)
+        {
+            this.serializerHelper = serializerHelper;
+            this.logger = logger;
+
+           // Deserialize();
+        }
+
+        public override List<Contact> FindAll()
+        {
+            return this.repository;
+        }
+
+        public override void Delete(Contact contact)
+        {
+            collection.Remove(contact);
+
+            Serialize();
+        }
+
+        public override void Save(Contact contact)
+        {
+            if (contact.Id == Guid.Empty)
+            {
+                contact.Id = Guid.NewGuid();
+            }
+
+            if (!collection.Contains(contact))
+            {
+                collection.Add(contact);
+            }
+
+            Serialize();
+        }
+
+        public override List<Contact> Find(string LookupName)
+        {
+            List<Contact> contacts = repository.FindAll(delegate (Contact contact) { return contact.FullName.StartsWith(LookupName, StringComparison.OrdinalIgnoreCase); });
+
+            return contacts;
+        }
+
+        public override void Serialize()
+        {
+            serializerHelper.Serialize<Contact>(collection);
+        }
+
+        public override void Deserialize()
+        {
+            repository = serializerHelper.Deserialize<Contact>(null) as List<Contact>;
+
+            //repository = null ?? new List<Contact>();
+
+            //collection = new ObservableCollection<Contact>(repository);
+
+            if (repository is null)
+            {
+                collection = new ObservableCollection<Contact>();
+            }
+            else
+            {
+                collection = new ObservableCollection<Contact>(repository);
+            }
+
+        }
+    }
+}
+
+-*-
+
+using BusinessCardWizard.CoreLayer.Loggers;
+using BusinessCardWizard.CoreLayer.SerializerHelpers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.ApplicationLayer.Services
+{
+    public abstract class DataService<T> : IDataService<T> where T : class, new()
+    {
+        public Logger logger;
+        public SerializerHelper serializerHelper;
+        public List<T> repository;
+
+        public DataService(SerializerHelper serializerHelper, Logger logger)//SerializerBase serializer, Logger logger
+        {
+            this.serializerHelper = serializerHelper;
+            this.logger = logger; 
+
+            //this.serializer = serializer;
+            //this.collection = collection;
+            //this.repository = null;
+        }
+
+        public abstract void Save(T entity);
+        public abstract void Delete(T entity);
+        public abstract List<T> FindAll();
+        public abstract List<T> Find(string LookupName);
+        public abstract void Serialize();
+        public abstract void Deserialize();
+    }
+}
+
+-*-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.ApplicationLayer.Services
+{
+    public interface IDataService<T>
+    {
+        void Save(T entity);
+        void Delete(T entity);
+        void Serialize();
+        void Deserialize();
+
+        List<T> FindAll();
+        List<T> Find(string LookupName);
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.Loggers
+{
+    public interface ILogger
+    {
+        void SetFilePath(int UserId);
+        void Configure();
+        void Debug(string text);
+        void Info(string text);
+        void Warning(string text);
+        void Error(string text);
+        void Fatal(string text);
+
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.Loggers
+{
+    public abstract class Logger : ILogger
+    {
+        protected string directoryPath;
+        public string filePath { get; set; }
+
+        public Logger(string directoryPath)
+        {
+            this.directoryPath = directoryPath;
+        }
+
+        public abstract void Configure();
+        public abstract void Debug(string text);
+        public abstract void Error(string text);
+        public abstract void Fatal(string text);
+        public abstract void Info(string text);
+        public abstract void Warning(string text);
+
+        public void SetFilePath(int userId)
+        {
+            DateTime date = DateTime.Now;
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            string fileName = $"{date:yyyyMMddHHmmss}_{userId}";
+            string filePath = Path.Combine( directoryPath, fileName + ".txt");
+
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath).Close();
+            }
+
+            this.filePath = filePath;
+
+        }
+
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.Loggers
+{
+    public class TextFileLogger : Logger
+    {
+
+        private DateTime date;
+
+        public TextFileLogger(string directoryPath) : base(directoryPath)
+        {
+
+        }
+
+        public override void Debug(string text)
+        {
+            File.AppendAllText(this.filePath, String.Format("{0}|{1}|{2}\r", "Debug", $"{DateTime.Now:yyyy-MM-dd-HH:mm:ss}", text) );
+        }
+
+        public override void Error(string text)
+        {
+            File.AppendAllText(this.filePath, String.Format("{0}|{1}|{2}\r", "Error", $"{DateTime.Now:yyyy-MM-dd-HH:mm:ss}", text));
+        }
+
+        public override void Fatal(string text)
+        {
+
+            File.AppendAllText(this.filePath, String.Format("{0}|{1}|{2}\r", "Fatal", $"{DateTime.Now:yyyy-MM-dd-HH:mm:ss}", text));
+        }
+
+        public override void Info(string text)
+        {
+
+            File.AppendAllText(this.filePath, String.Format("{0}|{1}|{2}\r", "Info", $"{DateTime.Now:yyyy-MM-dd-HH:mm:ss}", text));
+
+        }
+
+        public override void Warning(string text)
+        {
+
+            File.AppendAllText(this.filePath, String.Format("{0}|{1}|{2}\r", "Warning", $"{DateTime.Now:yyyy-MM-dd-HH:mm:ss}", text));
+        }
+
+        public override void Configure()
+        {
+
+        }
+    }
+}
+
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.SerializerHelpers
+{
+    public interface ISerializerHelper
+    {
+        void Serialize<T>(object obj, params object[] parameters) where T : class, new();
+        object Deserialize<T>(params object[] parameters) where T : class, new();
+    }
+}
+
+-*-
+
+using BusinessCardWizard.CoreLayer.Loggers;
+using BusinessCardWizard.CoreLayer.Serializers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.SerializerHelpers
+{
+    public class JsonSerializerHelper : SerializerHelper
+    {
+        public JsonSerializerHelper(Serializer serializer, Logger logger) : base(serializer, logger)
+        {
+            this.serializer = serializer;
+            this.logger = logger;
+        }
+
+        public override void Serialize<T>(object obj, params object[] parameters) where T : class
+        {
+            logger.Debug("Serialize");
+
+            try
+            {
+                serializer.Serialize<T>(obj, parameters);
+
+                logger.Debug("Succeed");
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+            }
+        }
+
+        public override object Deserialize<T>(params object[] parameters) where T : class
+        {
+            object obj = null;
+
+            logger.Debug("Deserialize");
+
+            try
+            {
+                obj = serializer.Deserialize<T>(parameters);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+
+                return null;
+            }
+
+            logger.Debug("Succeed");
+
+            return obj;
+        }
+    }
+}
+
+-*-
+
+using BusinessCardWizard.CoreLayer.Loggers;
+using BusinessCardWizard.CoreLayer.Serializers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.SerializerHelpers
+{
+    public abstract class SerializerHelper : ISerializerHelper
+    {
+        public Serializer serializer { get; set; }
+        public Logger logger { get; set; }
+
+        public SerializerHelper(Serializer serializer, Logger logger)//
+        {
+            this.serializer = serializer;
+            this.logger = logger;
+        }
+
+        public abstract void Serialize<T>(object obj, params object[] parameters) where T : class, new();
+        public abstract object Deserialize<T>(params object[] parameters) where T : class, new();
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.Serializers
+{
+    public interface ISerializer
+    {
+        int Id { get; set; }
+        string FileName { get; set; }
+        string FilePath { get; set; }
+
+        void Serialize<T>(object obj, params object[] parameters) where T : class, new();
+        object Deserialize<T>(params object[] parameters) where T : class, new();
+    }
+}
+
+-*-
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.Serializers
+{
+    public class JsonSerializer : Serializer
+    {
+        public JsonSerializer(int id) : base(id)
+        {
+        }
+
+        public override void Serialize<T>(object obj, params object[] parameters) where T : class
+        {
+            string data = JsonConvert.SerializeObject(obj, Formatting.Indented,
+
+            new JsonSerializerSettings
+            {
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+            });
+
+            //FileName = parameters[0] as string;
+            File.WriteAllText(FilePath, data);
+        }
+
+        public override object Deserialize<T>(params object[] parameters) where T : class
+        {
+            string data = File.ReadAllText(FilePath);
+
+            return JsonConvert.DeserializeObject<IEnumerable<T>>(data);
+        }
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.CoreLayer.Serializers
+{
+    public abstract class Serializer : ISerializer
+    {
+        public Serializer(int Id)
+        {
+            this.Id = Id;
+        }
+
+        public string FilePath
+        {
+            get { return Path.GetFullPath(Assembly.GetEntryAssembly().Location + $@"../../../../Json\{FileName}.txt"); }
+            set { throw new NotImplementedException(); }
+        }
+
+        public int Id { get; set; }
+        public string FileName { get; set; }
+        public abstract void Serialize<T>(object obj, params object[] parameters) where T : class, new();
+        public abstract object Deserialize<T>(params object[] parameters) where T : class, new();
+    }
+}
+
+-*-
+
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.DataAccessLayer.Model
+{
+    [Serializable]
+    public class Address : Notifier
+    {
+        private string city;
+        private string country;
+        private string state;
+        private string line1;
+        private string line2;
+        private string zip;
+
+        [JsonProperty("zip")]
+        public string Zip
+        {
+            get { return zip; }
+            set
+            {
+                zip = value;
+                OnPropertyChanged("Zip");
+            }
+        }
+
+        [JsonProperty("city")]
+        public string City
+        {
+            get { return city; }
+            set
+            {
+                city = value;
+                OnPropertyChanged("City");
+            }
+        }
+
+        [JsonProperty("country")]
+        public string Country
+        {
+            get { return country; }
+            set
+            {
+                country = value;
+                OnPropertyChanged("country");
+            }
+        }
+
+        [JsonProperty("state")]
+        public string State
+        {
+            get { return state; }
+            set
+            {
+                state = value;
+                OnPropertyChanged("State");
+            }
+        }
+
+        [JsonProperty("line1")]
+        public string Line1
+        {
+            get { return line1; }
+            set
+            {
+                line1 = value;
+                OnPropertyChanged("Line1");
+            }
+        }
+
+        [JsonProperty("line2")]
+        public string Line2
+        {
+            get { return line2; }
+            set
+            {
+                line2 = value;
+                OnPropertyChanged("Line2");
+            }
+        }
+    }
+    
+}
+
+-*-
+
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.DataAccessLayer.Model
+{
+    [Serializable]
+    public class Contact : Notifier
+    {
+        private Address address = new Address();
+        private Guid id = Guid.Empty;
+
+        private string company;
+        private string jobTitle;
+        private string fullName;
+        private string firstName;
+        private string lastName;
+        private string imagePath;
+        private string homePhone;
+        private string cellPhone;
+        private string officePhone;
+        private string organization;
+        private string primaryEmail;
+        private string secondaryEmail;
+
+        [JsonProperty("id")]
+        public Guid Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+
+        [JsonProperty("imagePath")]
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set
+            {
+                imagePath = value;
+                OnPropertyChanged("ImagePath");
+            }
+        }
+
+        [JsonProperty("company")]
+        public string Company
+        {
+            get { return company; }
+            set
+            {
+                company = value;
+                OnPropertyChanged("Company");
+            }
+        }
+
+        [JsonProperty("firstName")]
+        public string FirstName
+        {
+            get { return firstName; }
+            set
+            {
+                firstName = value;
+                OnPropertyChanged("FirstName");
+                OnPropertyChanged("FullName");
+            }
+        }
+
+        [JsonProperty("lastName")]
+        public string LastName
+        {
+            get { return lastName; }
+            set
+            {
+                lastName = value;
+                OnPropertyChanged("LastName");
+                OnPropertyChanged("FullName");
+            }
+        }
+
+        [JsonProperty("organization")]
+        public string Organization
+        {
+            get { return organization; }
+            set
+            {
+                organization = value;
+                OnPropertyChanged("Organization");
+            }
+        }
+
+        [JsonProperty("jobTitle")]
+        public string JobTitle
+        {
+            get { return jobTitle; }
+            set
+            {
+                jobTitle = value;
+                OnPropertyChanged("JobTitle");
+            }
+        }
+
+        [JsonProperty("officePhone")]
+        public string OfficePhone
+        {
+            get { return officePhone; }
+            set
+            {
+                officePhone = value;
+                OnPropertyChanged("OfficePhone");
+            }
+        }
+
+        [JsonProperty("cellPhone")]
+        public string CellPhone
+        {
+            get { return cellPhone; }
+            set
+            {
+                cellPhone = value;
+                OnPropertyChanged("CellPhone");
+            }
+        }
+
+        [JsonProperty("homePhone")]
+        public string HomePhone
+        {
+            get { return homePhone; }
+            set
+            {
+                homePhone = value;
+                OnPropertyChanged("HomePhone");
+            }
+        }
+
+        [JsonProperty("primaryEmail")]
+        public string PrimaryEmail
+        {
+            get { return primaryEmail; }
+            set
+            {
+                primaryEmail = value;
+                OnPropertyChanged("PrimaryEmail");
+            }
+        }
+
+        [JsonProperty("secondaryEmail")]
+        public string SecondaryEmail
+        {
+            get { return secondaryEmail; }
+            set
+            {
+                secondaryEmail = value;
+                OnPropertyChanged("SecondaryEmail");
+            }
+        }
+
+        [JsonProperty("address")]
+        public Address Address
+        {
+            get { return address; }
+            set
+            {
+                address = value;
+                OnPropertyChanged("Address");
+            }
+        }
+
+        public string FullName
+        {
+            get { return string.Format("{0} {1}", firstName, lastName); }
+            set
+            {
+                fullName = value;
+                OnPropertyChanged("FullName");
+            }
+        }
+
+        public bool Same(object obj)
+        {
+            Contact contact = obj as Contact;
+
+            return contact != null && contact.Id.Equals(Id);
+        }
+
+        /*
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return FullName;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Contact contact = obj as Contact;
+            return contact != null && contact.Id == Id;
+        }
+        */
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.DataAccessLayer.Model
+{
+    public static class Countries
+    {
+        private static List<string> countries { get; set; }
+        static Countries()
+        {
+            countries = new List<string>()
+            {
+                "Ausztria",
+                "Belgium",
+                "Bulgária",
+                "Ciprus",
+                "Csehország",
+                "Dánia",
+                "Észtország",
+                "Finnország",
+                "Franciaország",
+                "Görögország",
+                "Hollandia",
+                "Horvátország",
+                "Írország",
+                "Lettország",
+                "Lengyelország",
+                "Litvánia",
+                "Luxemburg",
+                "Magyarország",
+                "Málta",
+                "Németország",
+                "Olaszország",
+                "Portugália",
+                "Románia",
+                "Spanyolország",
+                "Svédország",
+                "Szlovákia",
+                "Szlovénia"
+            };
+        }
+
+        public static IEnumerable<string> GetCountries()
+        {
+            return countries;
+        }
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.DataAccessLayer.Model
+{
+    [Serializable]
+    public abstract class Notifier : INotifyPropertyChanged
+    {
+        [field: NonSerialized]
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+}
+
+-*-
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessCardWizard.DataAccessLayer.Model
+{
+    public static class States
+    {
+        private static List<string> states { get; set; }
+        static States()
+        {
+            states = new List<string>()
+            {
+                "Alabama",
+                "Alaska",
+                "Arizona",
+                "Arcansas",
+                "California"
+
+                //todo
+
+            };
+        }
+
+        public static IEnumerable<string> GetStates()
+        {
+            return states;
+        }
+    }
+}
+

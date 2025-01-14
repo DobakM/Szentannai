@@ -1,0 +1,12 @@
+Cégjegyzékszám;03 10 476530
+Fióktelep;HU 2121 Torokbalint Keleti udvar 12.
+Külföldi fióktelep;DE 312334 Munchen, Omszk park 1.
+Tevékenységi kör;2711'08 Villamos motor, aramfejleszto gyartasa
+Európai Egyedi Azonosító;HUOCCSZ.03-10-476530
+A cég pénzforgalmi jelzőszáma;11763055-57619886-00000000
+A cég kézbesítési címe;info@skytech.hu
+A cég hivatalos elektronikus elérhetősége;30114682#cegkapu
+Ff személyi szám;1820110 3453
+Női személyi szám;2030110 3453
+Jegyzett tőke;6 100 000 HUF
+Időpont;2021.10.08 19:10 pm

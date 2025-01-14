@@ -1,0 +1,5 @@
+*LOQ: Level of Quantitation, a mennyiségi meghatározás határa
+**TEF toxicitási egyenérték faktor a 29/2014.(XI.28.) FM rendelet szerint
+[pg TE] = vizsgálati minta dioxin/furán tartalma 2,3,7,8-TCDD-re vonatkoztatott nemzetközi toxicitási egyenértékben
+1az MSZ EN 1948-3:2006 szabvány 12.a. pontja szerint az alsó méréshatárnál kisebb koncentrációban meghatározott származékokat az alsó méréshatárnak megfelelő koncentrációban tartalmazó összeg (upper bound concentration)
+2az MSZ EN 1948-3:2006 szabvány 12.b. pontja szerint az alsó méréshatárnál kisebb koncentrációban meghatározott származékokat zérus koncentrációval tartalmazó összeg (lower bound concentration)

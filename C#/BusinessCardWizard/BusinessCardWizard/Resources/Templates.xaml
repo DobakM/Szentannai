@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BusinessCardWizard.Resources" xmlns:converter="clr-namespace:BusinessCardWizard.Converter">
+    <DataTemplate x:Key="card">
+        <DataTemplate.Resources>
+            <converter:PhoneConverter x:Key="phone"/>
+        </DataTemplate.Resources>
+
+        <Border Margin="3" BorderThickness="0.0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock FontWeight="DemiBold">Name:</TextBlock>
+                <TextBlock Grid.Row="1" FontWeight="DemiBold">Office:</TextBlock>
+                <TextBlock Grid.Row="2" FontWeight="DemiBold">Email:</TextBlock>
+
+                <TextBlock Grid.Column="1" FontWeight="UltraLight" Text="{Binding FullName}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" FontWeight="UltraLight" Text="{Binding Path=OfficePhone, Converter={StaticResource phone}, ConverterParameter=' {0:###-####}'}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" FontWeight="UltraLight" Text="{Binding PrimaryEmail}"/>
+
+                <Button x:Name="add" Grid.Column="2" Width="15" Height="15" Margin="1" BorderThickness="0 0 1 1">
+                    <Button.Content>
+                        <TextBlock VerticalAlignment="Center">+</TextBlock>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

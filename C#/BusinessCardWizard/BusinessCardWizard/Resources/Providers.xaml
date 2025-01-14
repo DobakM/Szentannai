@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BusinessCardWizard.Resources"
+                    xmlns:Model="clr-namespace:BusinessCardWizard.DataAccessLayer.Model;assembly=BusinessCardWizard.DataAccessLayer">
+
+    <ObjectDataProvider x:Key="states" MethodName="GetStates" ObjectType="{x:Type Model:States}"/>
+
+</ResourceDictionary>

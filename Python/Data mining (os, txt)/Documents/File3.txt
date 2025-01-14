@@ -1,0 +1,12 @@
+Cégjegyzékszám;06 08 576533
+Fióktelep;HU 2121 Mogyorod Pentek utca 20.
+Külföldi fióktelep;DE 512334 Hamburg, Hermann strasse 1.
+Tevékenységi kör;4669'08 Egyeb m. n. s. gep, berendezes nagykereskedelme
+Európai Egyedi Azonosító;HUOCCSZ.07-16-176537
+A cég pénzforgalmi jelzőszáma;11763055-57619886-00000000
+A cég kézbesítési címe;info@adata.hu
+A cég hivatalos elektronikus elérhetősége;10114682#cegkapu
+Ff személyi szám;1820110 3453
+Női személyi szám;2030110 3453
+Jegyzett tőke;16 100 000 HUF
+Időpont;2020.04.05 16:10 pm

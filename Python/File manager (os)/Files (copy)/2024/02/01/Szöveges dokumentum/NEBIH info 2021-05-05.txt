@@ -1,0 +1,1 @@
+Az API általában nem kötődik programozási nyelvhez: bármilyen programnyelvből lehetséges azok meghívása, amennyiben a megfelelő bemenő paramétereket a hívás biztosítja, és képes lekezelni az esetleges eredményt, a visszaadott kimenő adatot.

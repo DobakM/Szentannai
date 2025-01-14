@@ -1,0 +1,12 @@
+Cégjegyzékszám;01 09 352550
+Fióktelep;HU 2011 Budakalasz, Omszk park 1.
+Külföldi fióktelep;DE 201132 Berlin, Goethe strasse 1.
+Tevékenységi kör;4638'08 Egyeb elelmiszer nagykereskedelme
+Európai Egyedi Azonosító;HUOCCSZ.01-09-352550
+A cég pénzforgalmi jelzőszáma;11763055-57619886-00000000
+A cég kézbesítési címe;info@biotechusa.com
+A cég hivatalos elektronikus elérhetősége;25114681#cegkapu
+Ff személyi szám;1820110 3453
+Női személyi szám;2030110 3453
+Jegyzett tőke;3 000 000 HUF
+Időpont;2023.12.06 12:15 pm

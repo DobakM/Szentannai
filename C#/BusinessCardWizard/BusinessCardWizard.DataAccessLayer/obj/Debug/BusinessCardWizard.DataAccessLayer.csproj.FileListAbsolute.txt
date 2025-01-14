@@ -1,0 +1,18 @@
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\bin\Debug\BusinessCardWizard.DataAccessLayer.dll
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\bin\Debug\BusinessCardWizard.DataAccessLayer.pdb
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\bin\Debug\Newtonsoft.Json.dll
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\bin\Debug\Newtonsoft.Json.xml
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.csproj.CopyComplete
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.dll
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.pdb
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.csprojAssemblyReference.cache
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\bin\Debug\BusinessCardWizard.DataAccessLayer.dll
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\bin\Debug\BusinessCardWizard.DataAccessLayer.pdb
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.csprojAssemblyReference.cache
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.csproj.CopyComplete
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.dll
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.DataAccessLayer\obj\Debug\BusinessCardWizard.DataAccessLayer.pdb

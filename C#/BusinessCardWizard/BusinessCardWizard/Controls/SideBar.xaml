@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="BusinessCardWizard.Controls.SideBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BusinessCardWizard.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel Width="220" Margin="5">
+        <Button x:Name="insert" DockPanel.Dock="Bottom" Margin="0 2 17 0" Content="Insert" BorderThickness="0 0 1 1" Style="{x:Null}" Click="Event_Click"/>
+        <ScrollViewer>
+            <ItemsControl x:Name="itemscontrol" Background="White" BorderThickness="1" Padding="3" ItemsSource="{Binding collection}" ItemTemplate="{StaticResource card}" BorderBrush="{StaticResource {x:Static SystemColors.ActiveBorderBrushKey}}" Loaded="itemscontrol_Loaded"/>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

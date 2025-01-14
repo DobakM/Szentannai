@@ -1,0 +1,18 @@
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\bin\Debug\BusinessCardWizard.CoreLayer.dll
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\bin\Debug\BusinessCardWizard.CoreLayer.pdb
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\bin\Debug\Newtonsoft.Json.dll
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\bin\Debug\Newtonsoft.Json.xml
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.csproj.CoreCompileInputs.cache
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.csproj.CopyComplete
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.dll
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.pdb
+C:\Dobak\C#\Projects\Projects (WPF)\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.csprojAssemblyReference.cache
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\bin\Debug\BusinessCardWizard.CoreLayer.dll
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\bin\Debug\BusinessCardWizard.CoreLayer.pdb
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\bin\Debug\Newtonsoft.Json.dll
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\bin\Debug\Newtonsoft.Json.xml
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.csprojAssemblyReference.cache
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.csproj.CopyComplete
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.dll
+C:\Users\User\Desktop\C#\BusinessCardWizard\BusinessCardWizard.CoreLayer\obj\Debug\BusinessCardWizard.CoreLayer.pdb
